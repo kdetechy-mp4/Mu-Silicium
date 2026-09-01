@@ -12,6 +12,12 @@
 [BuildOptions]
   *_CLANGPDB_AARCH64_CC_FLAGS = -D HAS_CNTFRQ_EL0_EMPTY_ERRATA=$(HAS_CNTFRQ_EL0_EMPTY_ERRATA)
 
+[PcdsFixedAtBuild]
+  #
+  # ACPI
+  #
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"SAMSUN"
+
 [LibraryClasses]
   #
   # Memory Libraries
@@ -35,6 +41,11 @@
   #
   PlatformUfsLib|SamsungNullPkg/Library/PlatformUfsLibNull/PlatformUfsLibNull.inf
   UfsCalAdapterLib|SamsungPkg/Library/UfsCalAdapterLib/UfsCalAdapterLib.inf
+
+  #
+  # USB Libraries
+  #
+  PlatformUsbfnLib|SamsungNullPkg/Library/PlatformUsbfnLibNull/PlatformUsbfnLibNull.inf
 
   #
   # Samsung Libraries
@@ -63,6 +74,11 @@
   # Power Management Drivers
   #
   SamsungPkg/Drivers/PmicDxe/PmicDxe.inf
+
+  #
+  # USB Drivers
+  #
+  SamsungPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
 
   #
   # RNG Drivers

@@ -26,6 +26,12 @@
 
 [PcdsFixedAtBuild]
   #
+  # ACPI
+  #
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x2030333839453553
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x9830
+
+  #
   # CPU
   #
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
@@ -61,6 +67,12 @@
   PlatformSecLib|S5E9830Pkg/Library/PlatformSecLib/PlatformSecLib.inf
 
   #
+  # UEFI Libraries
+  #
+  HwResetSystemLib|S5E9830Pkg/Library/ResetSystemLib/ResetSystemLib.inf
+  ResetSystemLib|S5E9830Pkg/Library/ResetSystemLib/ResetSystemLib.inf
+
+  #
   # IO Libraries
   #
   GpioLib|S5E9830Pkg/Library/GpioLib/GpioLib.inf
@@ -76,6 +88,11 @@
   # Storage Libraries
   #
   PlatformUfsLib|S5E9830Pkg/Library/PlatformUfsLib/PlatformUfsLib.inf
+
+  #
+  # USB Libraries
+  #
+  PlatformUsbfnLib|S5E9830Pkg/Library/PlatformUsbfnLib/PlatformUsbfnLib.inf
 
   #
   # Samsung Libraries
