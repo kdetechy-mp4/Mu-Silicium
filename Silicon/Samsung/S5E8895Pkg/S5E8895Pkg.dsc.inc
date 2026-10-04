@@ -70,3 +70,13 @@
   # SEC Libraries
   #
   PlatformSecLib|S5E8895Pkg/Library/PlatformSecLib/PlatformSecLib.inf
+
+  #
+  # Memory Libraries
+  #
+  RamManagerLib|SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf
+
+  #
+  # IO Libraries
+  #
+  GpioLib|S5E8895Pkg/Library/GpioLib/GpioLib.inf
