@@ -40,8 +40,8 @@
   #
   # GIC
   #
-  gArmTokenSpaceGuid.PcdGicDistributorBase|0x10200000
-  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x10201000
+  gArmTokenSpaceGuid.PcdGicDistributorBase|0x10201000
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x10202000
 
   #
   # Timer
@@ -80,3 +80,8 @@
   # IO Libraries
   #
   GpioLib|S5E8895Pkg/Library/GpioLib/GpioLib.inf
+
+  #
+  # Storage Libraries
+  #
+  PlatformUfsLib|S5E8895Pkg/Library/PlatformUfsLib/PlatformUfsLib.inf

@@ -20,7 +20,6 @@ static const struct UfsCalPhyCfg init_cfg[] = {
 	{0x22, 0x00, PMD_ALL, PHY_PCS_RX, 0},
 	{0x84, 0x01, PMD_ALL, PHY_PCS_RX, 0},
 	{0x04, 0x01, PMD_ALL, PHY_PCS_TX, 0},
-	{0x8F, 0x3E, PMD_ALL, PHY_PCS_TX, 0},
 	{0x200, 0x0, PMD_ALL, PHY_PCS_COMN, 0},
 	{0x9536, 0x4E20, PMD_ALL, UNIPRO_DBG_MIB, 0},
 	{0x9564, 0x2e820183, PMD_ALL, UNIPRO_DBG_MIB, 0},
@@ -37,7 +36,6 @@ static const struct UfsCalPhyCfg init_cfg[] = {
 	{0x178, 0xC0, PMD_ALL, PHY_PMA_TRSV, 0},
 	{0xE0, 0x12, PMD_ALL, PHY_PMA_TRSV, 0},
 	{0x164, 0x58, PMD_ALL, PHY_PMA_TRSV, 0},
-	{0x1B0, 0x18, PMD_ALL, PHY_PMA_TRSV, 0},
 	{0x8C, 0xC0, PMD_ALL, PHY_PMA_COMN, 0},
 	{0x8C, 0x00, PMD_ALL, PHY_PMA_COMN, 0},
 	{0x00, 0xC8, PMD_ALL, COMMON_WAIT, 0},
@@ -58,6 +56,8 @@ static struct UfsCalPhyCfg post_init_cfg[] = {
 };
 
 static struct UfsCalPhyCfg calib_of_pwm[] = {
+	{0x1569, 0x0, PMD_PWM, UNIPRO_STD_MIB, 0},
+	{0x1569, 0x0, PMD_PWM, UNIPRO_STD_MIB, 0},
 	{0x2041, 8064, PMD_PWM, UNIPRO_STD_MIB, 0},
 	{0x2042, 28224, PMD_PWM, UNIPRO_STD_MIB, 0},
 	{0x2043, 20160, PMD_PWM, UNIPRO_STD_MIB, 0},
@@ -86,6 +86,8 @@ static struct UfsCalPhyCfg post_calib_of_pwm[] = {
 	{},
 };
 static struct UfsCalPhyCfg calib_of_hs_rate_a[] = {
+	{0x1569, 0x1, PMD_HS, UNIPRO_STD_MIB, 0},
+	{0x1584, 0x1, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2041, 8064, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2042, 28224, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2043, 20160, PMD_HS, UNIPRO_STD_MIB, 0},
@@ -107,10 +109,13 @@ static struct UfsCalPhyCfg calib_of_hs_rate_a[] = {
 	{0x128, 0x08, PMD_HS_G1_L2, PHY_PMA_TRSV, 0},
 	{0x128, 0x02, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x128, 0x00, PMD_HS_G3_L2, PHY_PMA_TRSV, 0},
+	{0x12C, 0x00, PMD_HS_G1_L2|PMD_HS_G3_L2, PHY_PMA_TRSV, 1},
 	{0x12C, 0x00, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0xd3, PMD_HS_G1_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0x73, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0x63, PMD_HS_G3_L2, PHY_PMA_TRSV, 0},
+	{0x108, 0x5D, PMD_HS, PHY_PMA_TRSV, 1},
+	{0x10C, 0x90, PMD_HS, PHY_PMA_TRSV, 1},
 	{},
 };
 
@@ -120,6 +125,8 @@ static struct UfsCalPhyCfg post_calib_of_hs_rate_a[] = {
 };
 
 static struct UfsCalPhyCfg calib_of_hs_rate_b[] = {
+	{0x1569, 0x1, PMD_HS, UNIPRO_STD_MIB, 0},
+	{0x1569, 0x1, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2041, 8064, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2042, 28224, PMD_HS, UNIPRO_STD_MIB, 0},
 	{0x2043, 20160, PMD_HS, UNIPRO_STD_MIB, 0},
@@ -133,6 +140,7 @@ static struct UfsCalPhyCfg calib_of_hs_rate_b[] = {
 	{0x78B8, 12000, PMD_HS, UNIPRO_DBG_APB, 0},
 	{0x78BC, 32000, PMD_HS, UNIPRO_DBG_APB, 0},
 	{0x78C0, 16000, PMD_HS, UNIPRO_DBG_APB, 0},
+
 	/*MPHY tuning value*/
 	{0xC8, 0xBC, PMD_HS, PHY_PMA_TRSV, 0},
 	{0xF0, 0x7F, PMD_HS, PHY_PMA_TRSV, 0},
@@ -140,10 +148,13 @@ static struct UfsCalPhyCfg calib_of_hs_rate_b[] = {
 	{0x128, 0x08, PMD_HS_G1_L2, PHY_PMA_TRSV, 0},
 	{0x128, 0x02, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x128, 0x00, PMD_HS_G3_L2, PHY_PMA_TRSV, 0},
+	{0x12C, 0x00, PMD_HS_G1_L2|PMD_HS_G3_L2, PHY_PMA_TRSV, 1},
 	{0x12C, 0x00, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0xd3, PMD_HS_G1_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0x73, PMD_HS_G2_L2, PHY_PMA_TRSV, 0},
 	{0x134, 0x63, PMD_HS_G3_L2, PHY_PMA_TRSV, 0},
+	{0x108, 0x5D, PMD_HS, PHY_PMA_TRSV, 1},
+	{0x10C, 0x90, PMD_HS, PHY_PMA_TRSV, 1},
 	{},
 };
 
@@ -162,18 +173,14 @@ static struct UfsCalPhyCfg lane1_sq_off[] = {
 static struct UfsCalPhyCfg post_h8_enter[] = {
 	{0x0C4, 0x99, PMD_ALL, PHY_PMA_TRSV, 0},
 	{0x0E8, 0x7F, PMD_ALL, PHY_PMA_TRSV, 0},
-	{0x0F0, 0x7F, PMD_ALL, PHY_PMA_TRSV, 0},
 	{0x004, 0x02, PMD_ALL, PHY_PMA_COMN, 0},
 	{},
 };
 
 static struct UfsCalPhyCfg pre_h8_exit[] = {
-	{0x004, 0x3F, PMD_HS, PHY_PMA_COMN,      0},
-	{0x0C4, 0xD9, PMD_ALL, PHY_PMA_TRSV,     0},
-	{0x0E8, 0x77, PMD_ALL, PHY_PMA_TRSV,     0},
-	{0x00,  0x0A, PMD_HS,  COMMON_WAIT,      0},
-	{0x0F0, 0xFF, PMD_HS,  PHY_PMA_TRSV,     0},
-	{0x1fc, 0x01, PMD_HS,  PHY_CDR_AFC_WAIT, 0},
+	{0x004, 0x00, PMD_ALL, PHY_PMA_COMN, 0},
+	{0x0C4, 0xD9, PMD_ALL, PHY_PMA_TRSV, 0},
+	{0x0E8, 0x77, PMD_ALL, PHY_PMA_TRSV, 0},
 	{},
 };
 
@@ -213,15 +220,15 @@ static inline UfsCalError __match_board_by_cfg(UINT8 board, UINT8 cfg_board)
 	return match;
 }
 
-static inline UfsCalError __match_mode_by_cfg(struct UicPwrMode *Pmd,
-								int mode)
+static inline ufs_cal_errno __match_mode_by_cfg(struct uic_pwr_mode *pmd,
+												int mode)
 {
-	UfsCalError match = UFS_CAL_ERROR;
-	UINT8 _m, _l, _g;
+	ufs_cal_errno match = UFS_CAL_ERROR;
+	u8 _m, _l, _g;
 
-	_m = Pmd->Mode;
-	_g = Pmd->Gear;
-	_l = Pmd->Lane;
+	_m = pmd->mode;
+	_g = pmd->gear;
+	_l = pmd->lane;
 
 	if (mode == PMD_ALL)
 		match = UFS_CAL_NO_ERROR;
@@ -279,7 +286,6 @@ static inline UfsCalError __match_mode_by_cfg(struct UicPwrMode *Pmd,
 		match = UFS_CAL_NO_ERROR;
 
 	return match;
-}
 
 static UfsCalError ufs_cal_wait_pll_lock(void *hba, UINT32 addr, UINT32 mask)
 {
@@ -323,94 +329,89 @@ static UfsCalError ufs_cal_config_uic(struct UfsCalParam *p,
 
 	for_each_phy_cfg(cfg) {
 		// was target_lane, though AvailableLane seems to be fine?
-		for (i = 0; i < p->AvailableLane; i++) {
-			if (UFS_CAL_ERROR ==
-					__match_board_by_cfg(p->Board, cfg->Board))
-				continue;
-			if (Pmd && UFS_CAL_ERROR ==
-					__match_mode_by_cfg(Pmd, cfg->Flag))
-				continue;
+		for_each_phy_cfg(cfg) {
+			for (i = 0; i < p->target_lane; i++) {
+				if (UFS_CAL_ERROR ==
+					__match_board_by_cfg(p->board, cfg->board))
+					continue;
+				if (pmd && UFS_CAL_ERROR ==
+					__match_mode_by_cfg(pmd, cfg->flg))
+					continue;
 
-			switch (cfg->Layer) {
-			case PHY_PCS_COMN:
-			case UNIPRO_STD_MIB:
-			case UNIPRO_DBG_MIB:
-				if (i == 0)
-					ufs_lld_dme_set(hba, UIC_ARG_MIB(cfg->Address),
-						cfg->Value);
-				break;
-			case PHY_PCS_RXTX:
-				ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->Address, i),
-						cfg->Value);
-				break;
-			case UNIPRO_DBG_PRD:
-				if (i == 0)
-					ufs_lld_dme_set(hba, UIC_ARG_MIB(cfg->Address),
-						UNIPRO_MCLK_PERIOD(p));
-				break;
-			case PHY_PCS_RX:
-				ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->Address,
-					RX_LANE_0+i), cfg->Value);
-				break;
-			case PHY_PCS_TX:
-				ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->Address,
-					TX_LANE_0+i), cfg->Value);
-				break;
-			case PHY_PCS_RX_PRD:
-				ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->Address,
-					RX_LANE_0+i), UNIPRO_MCLK_PERIOD(p));
-				break;
+				switch (cfg->lyr) {
+					case PHY_PCS_COMN:
+					case UNIPRO_STD_MIB:
+					case UNIPRO_DBG_MIB:
+						if (i == 0)
+							ufs_lld_dme_set(hba, UIC_ARG_MIB(cfg->addr),
+											cfg->val);
+							break;
+					case PHY_PCS_RXTX:
+						ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->addr, i),
+										cfg->val);
+						break;
+					case UNIPRO_DBG_PRD:
+						if (i == 0)
+							ufs_lld_dme_set(hba, UIC_ARG_MIB(cfg->addr),
+											UNIPRO_MCLK_PERIOD(p));
+							break;
+					case PHY_PCS_RX:
+						ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->addr,
+															 RX_LANE_0+i), cfg->val);
+						break;
+					case PHY_PCS_TX:
+						ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->addr,
+															 TX_LANE_0+i), cfg->val);
+						break;
+					case PHY_PCS_RX_PRD:
+						ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->addr,
+															 RX_LANE_0+i), UNIPRO_MCLK_PERIOD(p));
+						break;
 
-			case PHY_PCS_TX_PRD:
-				ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->Address,
-					TX_LANE_0+i), UNIPRO_MCLK_PERIOD(p));
-				break;
-			case PHY_PMA_COMN:
-				if (i == 0)
-					ufs_lld_pma_write(hba, cfg->Value,
-						PHY_PMA_COMN_ADDR(cfg->Address));
-				break;
-			case PHY_PMA_TRSV:
-				ufs_lld_pma_write(hba, cfg->Value,
-						PHY_PMA_TRSV_ADDR(cfg->Address, i));
-				break;
-			case PHY_PMA_TRSV_LANE1_SQ_OFF:
-				if (i == 1)
-					ufs_lld_pma_write(hba, cfg->Value,
-						PHY_PMA_TRSV_ADDR(cfg->Address, i));
-				break;
-			case UNIPRO_DBG_APB:
-				ufs_lld_unipro_write(hba, cfg->Value, cfg->Address);
-				break;
-			case PHY_PLL_WAIT:
-				if (i == 0) {
-					if (ufs_cal_wait_pll_lock(hba,
-						cfg->Address, cfg->Value) ==
+					case PHY_PCS_TX_PRD:
+						ufs_lld_dme_set(hba, UIC_ARG_MIB_SEL(cfg->addr,
+															 TX_LANE_0+i), UNIPRO_MCLK_PERIOD(p));
+						break;
+					case PHY_PMA_COMN:
+						if (i == 0)
+							ufs_lld_pma_write(hba, cfg->val,
+											  PHY_PMA_COMN_ADDR(cfg->addr));
+							break;
+					case PHY_PMA_TRSV:
+						ufs_lld_pma_write(hba, cfg->val,
+										  PHY_PMA_TRSV_ADDR(cfg->addr, i));
+						break;
+					case PHY_PMA_TRSV_LANE1_SQ_OFF:
+						if (i == 1)
+							ufs_lld_pma_write(hba, cfg->val,
+											  PHY_PMA_TRSV_ADDR(cfg->addr, i));
+							break;
+					case UNIPRO_DBG_APB:
+						ufs_lld_unipro_write(hba, cfg->val, cfg->addr);
+						break;
+					case PHY_PLL_WAIT:
+						if (i == 0) {
+							if (ufs_cal_wait_pll_lock(hba,
+								cfg->addr, cfg->val) ==
 								UFS_CAL_ERROR)
-						return UFS_CAL_TIMEOUT;
+								return UFS_CAL_TIMEOUT;
+						}
+						break;
+					case PHY_CDR_WAIT:
+						if (ufs_cal_wait_cdr_lock(hba,
+							cfg->addr, cfg->val, i) ==
+							UFS_CAL_ERROR)
+							return UFS_CAL_TIMEOUT;
+						break;
+					case COMMON_WAIT:
+						if (i == 0)
+							ufs_lld_udelay(cfg->val);
+					break;
+					default:
+						break;
 				}
-				break;
-			case PHY_CDR_WAIT:
-				if (ufs_cal_wait_cdr_lock(hba,
-						cfg->Address, cfg->Value, i) ==
-								UFS_CAL_ERROR)
-					return UFS_CAL_TIMEOUT;
-				break;
-			case PHY_CDR_AFC_WAIT:
-				if (ufs_cal_wait_cdr_afc_check(hba,
-						cfg->Address, cfg->Value, i) ==
-						UFS_CAL_ERROR)
-					return UFS_CAL_TIMEOUT;
-				break;
-			case COMMON_WAIT:
-				if (i == 0)
-					MicroSecondDelay(cfg->Value);
-				break;
-			default:
-				break;
 			}
 		}
-	}
 
 	return UFS_CAL_NO_ERROR;
 }
